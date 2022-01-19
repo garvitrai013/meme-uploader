@@ -1,5 +1,29 @@
 const express = require('express');
 
+const mongo = require('mongodb');
+
+const MongoClient = mongo.MongoClient;
+let url = "mongodb://localhost:27017/memedb";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  var dbo = db.db("memedb");
+  var myobj = { name: "Company Inc", address: "Highway 37" };
+  
+  dbo.createCollection("memes2", function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    db.close();
+  });
+
+  dbo.collection("memes2").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    db.close();
+  });
+});
+
 const PORT = process.env.PORT || 3001;
 
 const app = express();
