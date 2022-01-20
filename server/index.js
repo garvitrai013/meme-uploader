@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 var mstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, "./../react-frontend/public/uploads/");
+    cb(null, "./react-frontend/public/uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname )
@@ -50,6 +50,12 @@ app.post('/add-meme', upload.single("img"), (req,res) => {
 app.get('/all-memes',(req,res) => {
     Meme.find()
         .then((result) => res.send(result))
+        .catch((err) => console.log(err));
+})
+
+app.post('/delete', (req, res) => {
+    Meme.findByIdAndDelete(req.body.id)
+        .then((result) => res.redirect('/'))
         .catch((err) => console.log(err));
 })
 

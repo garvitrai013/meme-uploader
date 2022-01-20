@@ -68,7 +68,7 @@ form > label {
 }
 
 form > input[type="text"] {
-  width: 94%;
+  width: 100%;
 }
 
 form > select {
@@ -97,6 +97,14 @@ form > input[type="text"], select {
 
 .temp-header {
   display: flex;
-  justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.temp-header > button {
+  background-color: #000000;
+}
+
+.temp-header > select {
+  margin-right: 0;
 }

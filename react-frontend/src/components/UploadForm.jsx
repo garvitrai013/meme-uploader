@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const UploadForm = () => {
     const [name, setName] = useState("");
@@ -9,15 +9,6 @@ const UploadForm = () => {
     const [language, setLanguage] = useState("");
     const [img, setImg] = useState("");
     const [imgName, setImgName] = useState("");
-    const [sticker, setSticker] = useState("");
-    const [trend, setTrend] = useState("");
-
-    const [meme, setMeme] = useState(null);
-        useEffect(() => {
-            fetch("/add-meme")
-            .then((res) => res.json())
-            .then((meme) => setMeme(meme));
-        },[]);
 
     const onImgChange = (e) => {
         setImg(e.target.files[0]);
@@ -26,18 +17,19 @@ const UploadForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTrend("no");
-        setSticker("yes");
+
         console.log("handleSubmit");
-        const formData = new FormData()
+
+        const formData = new FormData();
         formData.append('name', name);
         formData.append('tags', tags);
         formData.append('emotion', emotion);
         formData.append('language', language);
         formData.append('img', img);
         formData.append('imgName', imgName);
-        formData.append('sticker', sticker);
-        formData.append('trend', trend);
+        formData.append('sticker', "Yes");
+        formData.append('trend', "No");
+        
         axios({
             method: "POST",
             url: "http://localhost:3001/add-meme",
@@ -50,8 +42,15 @@ const UploadForm = () => {
             console.log(res);
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err.response.data);
         });
+
+        setName("");
+        setTags("");
+        setEmotion("select");
+        setLanguage("select");
+        setImg("");
+        setImgName("");
     };
 
     return (
