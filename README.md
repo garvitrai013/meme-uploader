@@ -29,7 +29,7 @@ Note: You have to be present in root directory i.e meme-uploader before executin
 
 For client:
 ```bash
-cd reac-frontend
+cd react-frontend
 npm start
 ```
 
