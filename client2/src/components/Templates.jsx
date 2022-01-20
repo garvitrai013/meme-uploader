@@ -8,6 +8,8 @@ const Templates = (props) => {
 
     const handleRefresh = (e) => {
         e.preventDefault();
+
+        
     }
 
     return (
@@ -24,9 +26,9 @@ const Templates = (props) => {
                 </select><br/>
             </div>
             <div className="templates">
-                <Template {...props}/>
-                <Template />
-                <Template />
+                {memes.map(function(meme, i){
+                    return <Template {...meme}/>
+                })}
             </div>
         </div>
     )

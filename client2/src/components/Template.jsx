@@ -1,8 +1,12 @@
+import e from "express";
+
 const Template = (props) => {
     const {name, tags, emotion, language, imgsrc, sticker, trend} = props;
     
 
     const handleDelete = () => {
+        e.preventDefault();
+        
     }
 
     return (
