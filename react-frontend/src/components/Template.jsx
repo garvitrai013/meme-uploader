@@ -1,12 +1,13 @@
+import axios from "axios";
 import React from "react";
 
 const Template = (props) => {
-    const {name, tags, emotion, language, imgsrc, sticker, trend} = props;
+    const {id, name, tags, emotion, language, imgname, sticker, trend} = props.data;
     
 
     const handleDelete = (e) => {
         e.preventDefault();
-        
+
     }
 
     return (
@@ -31,7 +32,7 @@ const Template = (props) => {
                     <option value="Hindi">Hindi</option>
                     <option value="Other">Other</option>
                 </select><br/>
-                <img src={imgsrc} id="meme" alt="Meme"></img><br/>
+                <img src={`uploads/${imgname}`} id="meme" alt="Meme"></img><br/>
                 <label htmlFor="sticker">Is this a sticker?</label><br/>
                 <select id="sticker" name="sticker" value={sticker}>
                     <option value="yes">Yes</option>
