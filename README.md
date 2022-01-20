@@ -33,7 +33,7 @@ cd react-frontend
 npm start
 ```
 
-You'll have your app running on port 3000 
+You'll have your app running on port 3000 & server on port 3001
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
