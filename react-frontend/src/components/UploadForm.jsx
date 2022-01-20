@@ -40,7 +40,7 @@ const UploadForm = () => {
         formData.append('trend', trend);
         axios({
             method: "POST",
-            url: "https://localhost:3001/add-meme",
+            url: "http://localhost:3001/add-meme",
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data"
