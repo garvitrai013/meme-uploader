@@ -1,6 +1,17 @@
 import Template from "./Template";
+import React from "react";
+import { useState, useEffect } from "react";
 
 const Templates = (props) => {
+    const [memes,setMemes] = useState(null); 
+    useEffect(() => {   
+        fetch("/all-meme").
+        then(res => res.json()).
+        then(data => {  
+            setMemes(data);
+        });
+    })
+    console.log(memes);
 
     const handleSelectionChange = (e) => {
 
@@ -9,7 +20,7 @@ const Templates = (props) => {
     const handleRefresh = (e) => {
         e.preventDefault();
 
-        
+
     }
 
     return (
@@ -21,14 +32,17 @@ const Templates = (props) => {
                 </a>
                 <select onChange={handleSelectionChange}>
                     <option value="all">All</option>
-                    <option value="happy">Trending</option>
-                    <option value="sad">Stickers</option>
+                    <option value="trend">Trending</option>
+                    <option value="stickers">Stickers</option>
                 </select><br/>
             </div>
             <div className="templates">
-                {memes.map(function(meme, i){
-                    return <Template {...meme}/>
-                })}
+                {memes.length > 0?
+                    memes.map(function(meme, i){
+                        return <Template  key={i} meme={meme}/>
+                    })
+                    : <h3>No Memes Stored </h3>
+                }
             </div>
         </div>
     )

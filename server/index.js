@@ -1,5 +1,4 @@
 const express = require('express');
-const mongo = require('mongodb');
 const mongoose = require('mongoose');
 const Meme = require('./meme');
 
@@ -13,17 +12,19 @@ mongoose.connect(dbURI, { useNewUrlParser: true,useUnifiedTopology: true})
     .catch((err) => console.log(err));
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/add-meme',(req,res) => {
-    const meme = new Meme({
-        name:"Kesi hai tu?",
-        tags:"hera pheri, babu rao, bollywood, hindi",
-        emotion:"Happy",
-        language:"Hindi",
-        imgsrc:""
-    });
+
+app.post('/add-meme',(req,res) => {
+    const meme = new Meme(req.body);
 
     meme.save()
+        .then((result) => res.redirect('/'))
+        .catch((err) => console.log(err));
+})
+
+app.get('/all-memes',(req,res) => {
+    Meme.find()
         .then((result) => res.send(result))
         .catch((err) => console.log(err));
 })
