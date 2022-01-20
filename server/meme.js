@@ -18,10 +18,9 @@ const memeSchema = new Schema({
         type:String,
         required:true
     },
-    img:
-    {
-        data: Buffer,
-        contentType: String
+    imgName: {
+        type:String,
+        required:true
     },
     sticker: {
         type:String

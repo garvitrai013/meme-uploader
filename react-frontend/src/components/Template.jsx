@@ -6,7 +6,7 @@ const Template = (props) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-
+        
     }
 
     return (

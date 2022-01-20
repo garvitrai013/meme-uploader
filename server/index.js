@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const Meme = require('./meme');
+var cors = require('cors');
+
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 
@@ -12,21 +15,31 @@ mongoose.connect(dbURI, { useNewUrlParser: true,useUnifiedTopology: true})
     }))
     .catch((err) => console.log(err));
 
-const app = express();
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
-var storage = multer.diskStorage({
+
+var mstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, "./../react-frontend/public/uploads/");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+    cb(null, file.originalname )
   }
 })
 
-var upload = multer({ storage: storage }).single('file');
+const upload = multer({ storage: mstorage });
 
-app.post('/add-meme',(req,res) => {
-    const meme = new Meme(req.body);
+app.post('/add-meme', upload.single("img"), (req,res) => {
+    console.log(req);
+    const meme = new Meme({
+        name: req.body.name,
+        tags: req.body.tags,
+        emotion: req.body.emotion,
+        language: req.body.language,
+        imgName: req.file.filename,
+        sticker: req.body.sticker,
+        trend: req.body.trend
+    });
     console.log(meme);
     meme.save()
         .then((result) => res.redirect('/'))
@@ -38,4 +51,8 @@ app.get('/all-memes',(req,res) => {
     Meme.find()
         .then((result) => res.send(result))
         .catch((err) => console.log(err));
+})
+
+app.get('/',(req,res) => {
+    res.send("Welcome to server!");
 })

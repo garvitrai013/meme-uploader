@@ -15,12 +15,7 @@ const Templates = () => {
 
     const handleRefresh = (e) => {
         e.preventDefault();
-        fetch("/all-meme")
-        .then(res => res.json())
-        .then(data => {
-            setMemes(data);
-        });
-        console.log(memes);
+        window.location.reload();
     }
 
     return (
