@@ -16,33 +16,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.templates {
-  display: flex;
-}
-
 .upload-form, .template {
   display: flex;
   flex-direction: column;
@@ -91,7 +64,7 @@ form > #delete {
 }
 
 form > label {
-  width:50%;
+  width:80%;
 }
 
 form > input[type="text"] {
@@ -104,6 +77,22 @@ form > select {
 
 form > input[type="text"], select {
   background-color: #202020;
+}
+
+.templates{
+  max-width:1200px;
+  margin:0 auto;
+  display: grid;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+@media (min-width: 800px) {
+  .templates { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .templates { grid-template-columns: repeat(3, 1fr); }
 }
 
 .temp-header {

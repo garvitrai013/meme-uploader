@@ -31,7 +31,7 @@ const Template = (props) => {
                     <option value="Hindi">Hindi</option>
                     <option value="Other">Other</option>
                 </select><br/>
-                <img src={imgsrc} id="meme" alt="Meme Image"></img><br/>
+                <img src={imgsrc} id="meme" alt="Meme"></img><br/>
                 <label htmlFor="sticker">Is this a sticker?</label><br/>
                 <select id="sticker" name="sticker" value={sticker}>
                     <option value="yes">Yes</option>

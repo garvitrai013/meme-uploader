@@ -2,7 +2,7 @@ import Template from "./Template";
 import React from "react";
 import { useState, useEffect } from "react";
 
-const Templates = (props) => {
+const Templates = () => {
     const [memes,setMemes] = useState(null); 
     useEffect(() => {   
         fetch("/all-meme")
@@ -13,14 +13,14 @@ const Templates = (props) => {
     })
     console.log(memes);
 
-    const handleSelectionChange = (e) => {
-
-    }
-
     const handleRefresh = (e) => {
         e.preventDefault();
-
-
+        fetch("/all-meme")
+        .then(res => res.json())
+        .then(data => {
+            setMemes(data);
+        });
+        console.log(memes);
     }
 
     return (
@@ -30,13 +30,15 @@ const Templates = (props) => {
                 <a href="#" onClick={handleRefresh} className="refresh">
                     <img src="refresh-icon.png"></img>
                 </a>
-                <select onChange={handleSelectionChange}>
+                <select>
                     <option value="all">All</option>
-                    <option value="trend">Trending</option>
-                    <option value="stickers">Stickers</option>
                 </select><br/>
             </div>
             <div className="templates">
+                {/*{memes.length() > 0? memes.map(meme => <Template key={meme.id} meme={meme}/>): <h2>No Templates</h2>}*/}
+                <Template/>
+                <Template/>
+                <Template/>
                 <Template/>
             </div>
         </div>
