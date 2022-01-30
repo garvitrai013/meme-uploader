@@ -1,13 +1,32 @@
 import React from "react";
+import axios from "axios";
 
 const Template = (props) => {
     console.log("template.jsx");
     console.log(props);
     
+    const handleChange = (e) => {
+
+    }
 
     const handleDelete = (e) => {
         e.preventDefault();
+        axios({
+            method: "delete",
+            url: "http://localhost:3001/delete-meme",
+            data: {id: props.id},
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err.response.data);
+        });
 
+        window.location.reload();
     }
 
     return (
@@ -32,7 +51,9 @@ const Template = (props) => {
                     <option value="Hindi">Hindi</option>
                     <option value="Other">Other</option>
                 </select><br/>
-                <img src={`uploads/${props.meme.imgname}`} id="meme" alt="Meme"></img><br/>
+                <div className="meme-container">
+                    <img src={'/uploads/'+props.meme.imgName} id="meme" alt="Meme"></img><br/>
+                </div>
                 <label htmlFor="sticker">Is this a sticker?</label><br/>
                 <select id="sticker" name="sticker" value={props.meme.sticker}>
                     <option value="yes">Yes</option>

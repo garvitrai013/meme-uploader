@@ -6,17 +6,23 @@ import { useState, useEffect } from "react";
 const Templates = () => {
     const [templates, setTemplates] = useState({memes:[]});
     
-    
-    axios.get('http://localhost:3001/all-memes')
-    .then(res => {
-        console.log(res.data);
-        setTemplates({memes:res.data})
-    });
+    const getMemes = () => {
+        axios.get('http://localhost:3001/all-memes')
+        .then(res => {
+            console.log(res.data);
+            setTemplates({memes:res.data})
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+
+    useEffect(() => getMemes(), []);
 
     console.log(templates);
     const handleRefresh = (e) => {
         e.preventDefault();
-        {/*window.location.reload();*/}
+        window.location.reload();
     }
 
     return (
