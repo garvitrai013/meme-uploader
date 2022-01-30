@@ -38,12 +38,12 @@ const UploadForm = () => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err.response.data);
-        });
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            });
 
         setName("");
         setTags("");
@@ -58,7 +58,7 @@ const UploadForm = () => {
             <h2 className="title">Upload Template</h2>
             <form className="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Template name" value={name} onChange={(e) => setName(e.target.value)} value={name} required/><br/>
+                <input type="text" id="name" name="name" placeholder="Template name" value={name} onChange={(e) => setName(e.target.value)} required/><br/>
                 <label htmlFor="tags">Tags (separated by commas)</label>
                 <input type="text" id="tags" name="tags" placeholder="jethalal, taarak mehta, tv show, indian, hindi" value={tags} onChange={(e) => setTags(e.target.value)} required/><br/>
                 <label htmlFor="emotion">Emotion</label>
@@ -81,6 +81,7 @@ const UploadForm = () => {
                 <input type="file" id="img" name="img" accept=".jpg,.jpeg,.png,.gif" onChange={(e)=> onImgChange(e)} required/><br/>
                 <button type="submit" id="submit" >Upload</button>
             </form>
+            <p style={{textAlign: "center"}}>Hit refresh to see your uploaded meme below</p>
         </div>
     )
 }

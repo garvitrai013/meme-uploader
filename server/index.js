@@ -42,7 +42,7 @@ app.post('/add-meme', upload.single("img"), (req,res) => {
     });
     console.log(meme);
     meme.save()
-        .then((result) => res.redirect('/'))
+        .then((result) => console.log(result))
         .catch((err) => console.log(err));
 })
 
@@ -53,9 +53,9 @@ app.get('/all-memes',(req,res) => {
         .catch((err) => console.log(err));
 })
 
-app.post('/delete', (req, res) => {
-    Meme.findByIdAndDelete(req.body.id)
-        .then((result) => res.redirect('/'))
+app.delete('/delete-meme', (req, res) => {
+    Meme.deleteOne({ _id: req.body.id })
+        .then(() => console.log('deleted'))
         .catch((err) => console.log(err));
 })
 

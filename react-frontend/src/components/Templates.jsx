@@ -4,13 +4,20 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Templates = () => {
-    const [templates, setTemplates] = useState([]);
+    const [templates, setTemplates] = useState({memes:[]});
     
-    
-    axios.get('http://localhost:3001/all-memes')
-    .then(res => {
-        setTemplates(res.data);
-    });
+    const getMemes = () => {
+        axios.get('http://localhost:3001/all-memes')
+        .then(res => {
+            console.log(res.data);
+            setTemplates({memes:res.data})
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+
+    useEffect(() => getMemes(), []);
 
     console.log(templates);
     const handleRefresh = (e) => {
@@ -30,9 +37,7 @@ const Templates = () => {
                 </select><br/>
             </div>
             <div className="templates">
-                {templates.map((data, idx) => (
-                    <Template  data={data}/>
-                ))}
+                {templates.memes.map(meme => <Template key={meme._id} meme={meme} />)}
             </div>
         </div>
     )
