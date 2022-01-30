@@ -38,12 +38,12 @@ const UploadForm = () => {
                 "Content-Type": "multipart/form-data"
             }
         })
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err.response.data);
-        });
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            });
 
         setName("");
         setTags("");

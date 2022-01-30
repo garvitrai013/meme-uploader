@@ -4,18 +4,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Templates = () => {
-    const [templates, setTemplates] = useState([]);
+    const [templates, setTemplates] = useState({memes:[]});
     
     
     axios.get('http://localhost:3001/all-memes')
     .then(res => {
-        setTemplates(res.data);
+        console.log(res.data);
+        setTemplates({memes:res.data})
     });
 
     console.log(templates);
     const handleRefresh = (e) => {
         e.preventDefault();
-        window.location.reload();
+        {/*window.location.reload();*/}
     }
 
     return (
@@ -30,9 +31,7 @@ const Templates = () => {
                 </select><br/>
             </div>
             <div className="templates">
-                {templates.map((data, idx) => (
-                    <Template  data={data}/>
-                ))}
+                {templates.memes.map(meme => <Template key={meme._id} meme={meme} />)}
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
-import axios from "axios";
 import React from "react";
 
 const Template = (props) => {
-    const {id, name, tags, emotion, language, imgname, sticker, trend} = props.data;
+    console.log("template.jsx");
+    console.log(props);
     
 
     const handleDelete = (e) => {
@@ -14,11 +14,11 @@ const Template = (props) => {
         <div className="template">
             <form className="form">
                 <label htmlFor="name">Name</label><br/>
-                <input type="text" id ="name" name="name" placeholder="Template name" value={name} required/><br/>
+                <input type="text" id ="name" name="name" placeholder="Template name" value={props.meme.name} required/><br/>
                 <label htmlFor="tags">Tags (separated by commas)</label><br/>
-                <input type="text" id ="tags" name="tags" placeholder="jethalal, taarak mehta, tv show, indian, hindi" value={tags} required/><br/>
+                <input type="text" id ="tags" name="tags" placeholder="jethalal, taarak mehta, tv show, indian, hindi" value={props.meme.tags} required/><br/>
                 <label htmlFor="emotion">Emotion</label><br/>
-                <select id="emotions" name="emotion" value={emotion} required>
+                <select id="emotions" name="emotion" value={props.meme.emotion} required>
                     <option value="Happy">Happy</option>
                     <option value="Sad">Sad</option>
                     <option value="Surprised">Surprised</option>
@@ -27,24 +27,24 @@ const Template = (props) => {
                     <option value="Other">Other</option>
                 </select><br/>
                 <label htmlFor="language">Language</label><br/>
-                <select id="language" name="language" value={language} required>
+                <select id="language" name="language" value={props.meme.language} required>
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
                     <option value="Other">Other</option>
                 </select><br/>
-                <img src={`uploads/${imgname}`} id="meme" alt="Meme"></img><br/>
+                <img src={`uploads/${props.meme.imgname}`} id="meme" alt="Meme"></img><br/>
                 <label htmlFor="sticker">Is this a sticker?</label><br/>
-                <select id="sticker" name="sticker" value={sticker}>
+                <select id="sticker" name="sticker" value={props.meme.sticker}>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select><br/>
                 <label htmlFor="trending">Is it trending?</label><br/>
-                <select id="trending" name="trending" value={trend}>
+                <select id="trending" name="trending" value={props.meme.trend}>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select><br/>
                 <p>Published</p>
-                <button id="delete" ty onClick={handleDelete}>Delete</button>
+                <button id="delete" type="delete" onClick={handleDelete}>Delete</button>
             </form>
         </div>
     )
