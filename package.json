@@ -5,7 +5,9 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "hmr": "nodemon server/index.js",
+    "nodemon": "npm run hmr"
   },
   "repository": {
     "type": "git",

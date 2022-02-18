@@ -14,7 +14,7 @@ const Template = (props) => {
         axios({
             method: "delete",
             url: "http://localhost:3001/delete-meme",
-            data: {id: props.id},
+            data: {id: props.meme._id},
             headers: {
                 "Content-Type": "multipart/form-data"
             }

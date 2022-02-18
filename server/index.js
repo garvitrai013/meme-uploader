@@ -54,7 +54,9 @@ app.get('/all-memes',(req,res) => {
 })
 
 app.delete('/delete-meme', (req, res) => {
-    Meme.deleteOne({ _id: req.body.id })
+    Meme.deleteOne({ _id: req.body.id }, (err) =>{
+        if(err) return handleError(err)
+    })
         .then(() => console.log('deleted'))
         .catch((err) => console.log(err));
 })
